@@ -10,27 +10,16 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-git clone https://github.com/liuran001/openwrt-packages
+# Modify default IP
+sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/files/bin/config_generate
+
+# 插件库
 git clone https://github.com/kenzok8/openwrt-packages.git
 git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
 git clone https://github.com/vernesong/OpenClash package/luci-app-openclash
 git clone https://github.com/jerrykuku/luci-app-vssr package/luci-app-vssr
 git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 git clone https://github.com/frainzy1477/luci-app-clash package/luci-app-clash
-
-
-cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.50.1'                                    # IPv4 地址(openwrt后台地址)
-uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
-uci set network.lan.gateway='192.168.50.1'                                   # IPv4 网关
-uci set network.lan.broadcast='192.168.50.255'                               # IPv4 广播
-uci set network.lan.dns='223.5.5.5 114.114.114.114'                         # DNS(多个DNS要用空格分开)
-#uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
-uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
-#uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
-#uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释
-uci set system.@system[0].hostname='OpenWrt'                            # 修改主机名称为OpenWrt-123
-EOF
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile            # 选择argon为默认主题
 
