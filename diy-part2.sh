@@ -17,7 +17,6 @@ git clone https://github.com/vernesong/OpenClash package/luci-app-openclash
 git clone https://github.com/jerrykuku/luci-app-vssr package/luci-app-vssr
 git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 git clone https://github.com/frainzy1477/luci-app-clash package/luci-app-clash
-git clone https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-aliyundrive-webdav package/luci-app-aliyundrive-webdav
 
 
 cat >$NETIP <<-EOF
